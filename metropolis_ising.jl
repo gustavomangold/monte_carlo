@@ -19,13 +19,13 @@ function run_mc_step(temperature, steps)
 	probability_spin_down = 1 - probability_spin_up
 	
 	if rand() < probability_spin_up
-		energy_variation = (energy - ((sum(array_spins) - 1) / total_spins)^2)
+		energy_variation = (energy - ((sum(array_spins) + 1) / total_spins)^2)
 		if energy_variation <= 0  
-			array_spins = flip_spin(array_spins, -1)
+			array_spins = flip_spin(array_spins, 1)
 		end
 		else
 			if rand() < exp(-energy_variation/temperature)
-				array_spins = flip_spin(array_spins, -1)
+				array_spins = flip_spin(array_spins, 1)
 			end
 		end
 	end
